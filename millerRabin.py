@@ -2,15 +2,12 @@ import math
 from sympy import factorint
 
 def millerRabin(n):
-
     n = int(n)
-
     if n == 0 or n == 1:
         message = 'Forget about 0 and 1. We don\'t consider them in this argument.'
-
-    if n == 2:
+    elif n == 2:
         message = '2 is prime. In fact, it\'s the only even prime number. It is also the smallest prime number.'
-    if n % 2 == 0:
+    elif n % 2 == 0:
         message = f'{n} is not prime. It is divisible by 2.'
     else:
         primality = True
@@ -42,7 +39,7 @@ def millerRabin(n):
         else:
             message = f'{n} is not prime.'
 
-            f = factorint(n + 1)
+            f = factorint(n)
 
             strOut = f'{n} = '
             for k, v in f.items():
