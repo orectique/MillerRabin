@@ -21,36 +21,36 @@ def millerRabin(n):
 
         # n = 2^s * d + 1
 
-        message = ''
+        message = f'{n} = 2^{s} * {d} + 1\n\n'
 
         for a in range(2, min(n - 2, math.floor(2 * (math.log(n)**2))) + 1):
 
-            message += f'For a = {a}, \n'
+            message += f'\nFor a = {a}, \n'
             x = pow(a, d, n)
             message += f'x = {x} \n'
             if x == 1 or x == n - 1:
                 message += f'{x} = 1 or {x} = {n - 1} \n'
                 continue
             for r in range(1, s):
-                message += f'For r = {r}, \n'
+                message += f'\tFor r = {r}, \n'
                 x = pow(x, 2, n)
-                message += f'x = {x} \n'
+                message += f'\t\tx = {x} \n'
                 if x == 1:
-                    message += f'{x} = 1 \n'
+                    message += f'\t\tx = 1 \n'
                     primality = False
                     break
                 if x == n - 1:
-                    message += f'{x} = {n - 1} \n'
+                    message += f'\t\tx = {n - 1} \n'
                     break
             else:
-                message += f'{x} = {n - 1} \n'
+                message += f'\tx = {n - 1} \n'
                 primality = False
                 break
         
         if primality:
-            message = f'\n\n{n} is prime.'
+            message += f'{n} is prime.'
         else:
-            message = f'\n\n{n} is not prime.'
+            message += f'\n\n{n} is not prime.'
 
             f = factorint(n)
 

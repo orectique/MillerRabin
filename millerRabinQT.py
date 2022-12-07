@@ -1,6 +1,8 @@
 import math
 from sympy import factorint
 
+from PyQt6.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout
+
 def millerRabin(n):
     n = int(n)
     if n == 0 or n == 1:
@@ -19,38 +21,25 @@ def millerRabin(n):
             d = d // 2
             s += 1
 
-        # n = 2^s * d + 1
-
-        message = ''
-
         for a in range(2, min(n - 2, math.floor(2 * (math.log(n)**2))) + 1):
-
-            message += f'For a = {a}, \n'
             x = pow(a, d, n)
-            message += f'x = {x} \n'
             if x == 1 or x == n - 1:
-                message += f'{x} = 1 or {x} = {n - 1} \n'
                 continue
             for r in range(1, s):
-                message += f'For r = {r}, \n'
                 x = pow(x, 2, n)
-                message += f'x = {x} \n'
                 if x == 1:
-                    message += f'{x} = 1 \n'
                     primality = False
                     break
                 if x == n - 1:
-                    message += f'{x} = {n - 1} \n'
                     break
             else:
-                message += f'{x} = {n - 1} \n'
                 primality = False
                 break
         
         if primality:
-            message = f'\n\n{n} is prime.'
+            message = f'{n} is prime.'
         else:
-            message = f'\n\n{n} is not prime.'
+            message = f'{n} is not prime.'
 
             f = factorint(n)
 
